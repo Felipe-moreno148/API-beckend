@@ -1,14 +1,21 @@
 import express, { request, response } from "express";
 
 const app = express()
+app.use(express.json())
 
-app.post('/users', (request, response) => {
-    console.log(request)
-    response.send('Ok request')
+const users = []
+
+app.post('/users', (req, res) => {
+    users.push(req.body)
+    res.send('Ok request')
+    res.status(201).json(req.body)
 })
 
-app.get('/users', (request, response) => {
-    response.send('ok. deu certo')
+app.get('/users', (req, res) => {
+    res.json(users)
+    res.status(200).json(users)
 })
+
+
 
 app.listen(8888)
