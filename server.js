@@ -36,12 +36,18 @@ app.put('/users/:id', async(req, res) => {
 
     })
 
-    
+
     res.status(202).json(req.body)
 })
 
 app.delete('/users/:id', async(req, res) => {
-    
+    await prisma.user.delete({
+        where: {
+            id: req.params.id
+        }
+    })
+
+    res.status(203).json({ message: 'Usuário excluido.' })
 })
 
 app.listen(8888)
