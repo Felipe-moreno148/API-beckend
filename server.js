@@ -16,6 +16,4 @@ app.get('/users', (req, res) => {
     res.status(200).json(users)
 })
 
-
-
 app.listen(8888)
